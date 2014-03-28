@@ -3,4 +3,9 @@ description = A helper module to provide enhancements to the UUID module and to 
 core = 7.x
 version = 7.x-0.1
 
+php = 5.3
+
+files[] = uuid_helper.views.inc
+files[] = includes/views/uuid_helper_views_handler_argument_entity_identifier.inc
+
 dependencies[] = uuid
