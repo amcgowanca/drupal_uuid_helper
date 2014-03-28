@@ -4,11 +4,21 @@
  */
 
 /**
+ * Implements hook_views_api().
+ */
+function uuid_helper_views_api() {
+  return array(
+    'api' => 3,
+    'path' => drupal_get_path('module', 'uuid_helper'),
+  );
+}
+
+/**
  * Implements hook_ctools_plugin_directory()
  */
-function uuid_features_helper_ctools_plugin_directory($owner, $plugin_type) {
+function uuid_helper_ctools_plugin_directory($owner, $plugin_type) {
   if ($owner == 'ctools' && $plugin_type == 'content_types') {
-    return 'plugins/' . $plugin_type;
+    return 'plugins/ctools/' . $plugin_type;
   }
 }
 
