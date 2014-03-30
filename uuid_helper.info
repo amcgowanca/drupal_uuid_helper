@@ -1,11 +1,12 @@
 name = UUID Helper
 description = A helper module to provide enhancements to the UUID module and to users working with UUIDs.
 core = 7.x
+php = 5.3
 version = 7.x-0.1
 
-php = 5.3
-
+; Files that are part of this module.
 files[] = uuid_helper.views.inc
 files[] = includes/views/uuid_helper_views_handler_argument_entity_identifier.inc
 
+; Module dependencies.
 dependencies[] = uuid
