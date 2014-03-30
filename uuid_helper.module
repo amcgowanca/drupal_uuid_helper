@@ -51,3 +51,12 @@ function uuid_helper_form_taxonomy_form_term_alter(&$form, $form_state) {
     $form['name']['#field_suffix'] = t('<small>UUID: @uuid</small>', array('@uuid' => $form_state['term']->uuid));
   }
 }
+
+/**
+ * Implements hook_form_user_profile_form_alter().
+ */
+function uuid_helper_form_user_profile_form_alter(&$form, $form_state) {
+  if ('account' === $form['#user_category'] && !empty($form_state['user']->uuid) && user_access('uuid visible entity edit')) {
+    $form['account']['name']['#field_suffix'] = t('<small>UUID: @uuid</small>', array('@uuid' => $form_state['user']->uuid));
+  }
+}
