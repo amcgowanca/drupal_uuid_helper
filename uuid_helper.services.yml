@@ -1,0 +1,16 @@
+services:
+  uuid_helper.param_converter:
+    class: Drupal\uuid_helper\ParamConverter\UuidEntityConverter
+    tags:
+      - { name: paramconverter, priority: 5 }
+    arguments: ['@entity.manager']
+  uuid_helper.outbound_path_processor:
+    class: Drupal\uuid_helper\Path\OutboundPathProcessor
+    tags:
+      - { name: path_processor_outbound, priority: 10 }
+    arguments: ['@entity.manager', '@router.route_provider']
+  uuid_helper.route_subscriber:
+    class: Drupal\uuid_helper\Routing\RouteSubscriber
+    tags:
+      - { name: event_subscriber }
+    arguments: ['@entity.manager']

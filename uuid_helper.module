@@ -1,0 +1,62 @@
+<?php
+/**
+ * @file
+ */
+
+/**
+ * Implements hook_permission().
+ */
+function uuid_helper_permission() {
+  return array(
+    'view entity uuid information' => array(
+      'title' => t('View entity UUID information'),
+    ),
+  );
+}
+
+/**
+ * Implements hook_form_node_form_alter().
+ */
+function uuid_helper_form_node_form_alter(&$form, &$form_state) {
+  if (!$form_state['controller']->getEntity()->isNew() && \Drupal::currentUser()->hasPermission('view entity uuid information')) {
+    $form['uuid_information'] = array(
+      '#type' => 'details',
+      '#group' => 'advanced',
+      '#title' => t('UUID Information'),
+      '#open' => FALSE,
+      '#tree' => TRUE,
+      '#access' => TRUE,
+      '#weight' => -30,
+    );
+    $form['uuid_information']['uuid'] = array(
+      '#type' => 'item',
+      '#title' => t('UUID'),
+      '#markup' => $form_state['controller']->getEntity()->uuid(),
+      '#wrapper_attributes' => array('class' => array('container-inline')),
+      '#access' => TRUE,
+    );
+  }
+}
+
+/**
+ * Implements hook_form_taxonomy_term_form_alter().
+ */
+function uuid_helper_form_taxonomy_term_form_alter(&$form, &$form_state) {
+  if (!$form_state['controller']->getEntity()->isNew() && \Drupal::currentUser()->hasPermission('view entity uuid information')) {
+    $form['uuid_information'] = array(
+      '#type' => 'details',
+      '#group' => 'advanced',
+      '#title' => t('UUID Information'),
+      '#open' => FALSE,
+      '#tree' => TRUE,
+      '#access' => TRUE,
+    );
+    $form['uuid_information']['uuid'] = array(
+      '#type' => 'item',
+      '#title' => t('UUID'),
+      '#markup' => $form_state['controller']->getEntity()->uuid(),
+      '#wrapper_attributes' => array('class' => array('container-inline')),
+      '#access' => TRUE,
+    );
+  }
+}
