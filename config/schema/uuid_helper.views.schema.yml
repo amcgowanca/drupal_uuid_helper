@@ -1,0 +1,6 @@
+views.argument.entity_identifier:
+  type: views_argument
+  label: 'Entity identifier'
+views.argument_validator.entity_identifier:
+  type: mapping
+  label: 'Entity'
